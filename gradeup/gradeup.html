@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grade Up</title>
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grade Up</title>
+<style>
+  header {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;      
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    flex-direction: row; /* maiiwan sila sa kaliwa */
+  }
+  header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 4rem auto 2rem auto; 
+    padding: 1rem;
+    background: #007ced;
+    color: #222;
+  }
+  h2 {
+    text-align: center;
+    font-size: 20px;
+  }
+  h1 {
+    text-align: left;
+    font-size: 20px;
+    margin: 0;
+  }
+  label {
+    display: block;
+    margin-top: 1rem;
+  }
+  select, input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 0.4rem;
+    margin-top: 0.3rem;
+    box-sizing: border-box;
+  }
+  button {
+    margin-top: 1.5rem;
+    padding: 12px 25px;
+    font-size: 1rem;
+    margin: 5px 0px;
+    margin-right: 7px;
+    border-radius: 30px;
+    cursor: pointer;
+    background: #98ccfe;
+    border: 2px solid #e5e5e5;
+    color: #000;
+  }
+  .hidden {
+    display: none;
+  }
+  .result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #e0ffe0;
+    border: 1px solid #0a0;
+  }
+  .warning {
+    background: #ffe0e0;
+    border: 1px solid #a00;
+  }
+  .previous-computations {
+    margin-top: 1rem;
+    background: #eef;
+    padding: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #99c;
+  }
+  footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 2rem;
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <img src="c:\Users\HP\Downloads\553620382_4979968165609870_1999118709565571644_n.jpg" alt="c:\Users\HP\Downloads\553620382_4979968165609870_1999118709565571644_n.jpg">
+    <h1>Grade Up</h1>
+  </header>
+
+  <footer>
+    © All Rights Reserved 2025
+  </footer>
+</body>
+</html>
+
+  
+  
+<div id="username-section">
+  <label for="username-input">Enter Username:</label>
+  <input type="text" id="username-input" placeholder="Your username" />
+  <button id="start-btn">Start</button>
+</div>
+
+<div id="home-section" class="hidden">
+  <h2>Home Page Options</h2>
+  <button id="select-subject-btn">1. Select Subject</button>
+  <button id="view-previous-btn">2. View Previous Computations</button>
+  <button id="exit-btn" class="hidden">Save and Exit</button>
+</div>
+
+<div id="previous-section" class="hidden">
+  <h2>Previous Computations</h2>
+  <div class="previous-computations" id="previous-list">
+ 
+  </div>
+  <button id="back-home-btn">Back to Home</button>
+</div>
+
+<div id="subject-section" class="hidden">
+  <h2>Select Subject and Year Level</h2>
+  <label for="subject-select">Select Subject:</label>
+  <select id="subject-select">
+    <option value="" disabled selected>-- Choose Subject --</option>
+    <option value="1">Java</option>
+    <option value="2">Philosophy</option>
+    <option value="3">UCSP</option>
+    <option value="4">Contemporary Arts (CPAR)</option>
+    <option value="5">Entrepreneurship</option>
+    <option value="6">HOPE</option>
+    <option value="7">PR</option>
+  </select>
+
+  <label for="year-level-select">Enter Year Level:</label>
+  <select id="year-level-select">
+    <option value="" disabled selected>-- Choose Year Level --</option>
+    <option value="1201">1201</option>
+    <option value="1202">1202</option>
+    <option value="1203">1203</option>
+  </select>
+
+  <button id="proceed-scores-btn" disabled>Proceed to Scores</button>
+  <button id="back-home-from-subject-btn">Back to Home</button>
+</div>
+
+<div id="scores-section" class="hidden">
+  <h2>Enter Scores</h2>
+  <form id="scores-form">
+    <label for="ww-score">Written Works Score (max 120):</label>
+    <input type="number" id="ww-score" min="0" max="120" required />
+
+    <label for="pt-score">Performance Task Score (100):</label>
+    <input type="number" id="pt-score" min="0" max="100" required />
+
+    <label for="qe-score">Quarterly Exam Score (max 60):</label>
+    <input type="number" id="qe-score" min="0" max="60" required />
+
+    <div id="cpar-extra-scores" class="hidden">
+      <label for="attend-score">Attendance Score (max 100):</label>
+      <input type="number" id="attend-score" min="0" max="100" />
+
+      <label for="behavior-score">Behavior Score (max 100):</label>
+      <input type="number" id="behavior-score" min="0" max="100" />
+    </div>
+
+    <button type="submit">Compute Grade</button>
+  </form>
+  <button id="back-subject-btn">Back to Subject Selection</button>
+</div>
+
+<div id="result-section" class="hidden">
+  <h2>Grade Result</h2>
+  <div id="grade-result" class="result"></div>
+  <button id="compute-another-btn">Compute Another Subject</button>
+  <button id="save-exit-btn">Save and Exit</button>
+</div>
+
+<script>
+   // elements section
+  const usernameSection = document.getElementById('username-section');
+  const usernameInput = document.getElementById('username-input');
+  const startBtn = document.getElementById('start-btn');
+  // page navigation
+  const homeSection = document.getElementById('home-section');
+  const selectSubjectBtn = document.getElementById('select-subject-btn');
+  const viewPreviousBtn = document.getElementById('view-previous-btn');
+  const exitBtn = document.getElementById('exit-btn');
+
+  const previousSection = document.getElementById('previous-section');
+  const previousList = document.getElementById('previous-list');
+  const backHomeBtn = document.getElementById('back-home-btn');
+
+  const subjectSection = document.getElementById('subject-section');
+  const subjectSelect = document.getElementById('subject-select');
+  const yearLevelSelect = document.getElementById('year-level-select');
+  const proceedScoresBtn = document.getElementById('proceed-scores-btn');
+  const backHomeFromSubjectBtn = document.getElementById('back-home-from-subject-btn');
+  // scores 
+  const scoresSection = document.getElementById('scores-section');
+  const scoresForm = document.getElementById('scores-form');
+  const wwScoreInput = document.getElementById('ww-score');
+  const ptScoreInput = document.getElementById('pt-score');
+  const qeScoreInput = document.getElementById('qe-score');
+  const cparExtraScores = document.getElementById('cpar-extra-scores');
+  const attendScoreInput = document.getElementById('attend-score');
+  const behaviorScoreInput = document.getElementById('behavior-score');
+  const backSubjectBtn = document.getElementById('back-subject-btn');
+  //navigaytion
+  const resultSection = document.getElementById('result-section');
+  const gradeResultDiv = document.getElementById('grade-result');
+  const computeAnotherBtn = document.getElementById('compute-another-btn');
+  const saveExitBtn = document.getElementById('save-exit-btn');
+
+  // Variables
+  let username = '';
+  let previousComputations = [];
+  let currentSubject = null;
+  let currentYearLevel = null;
+  let gradingCriteria = {};
+  let subjectName = '';
+
+  // Subjects
+  const subjects = {
+    1: 'Java',
+    2: 'Philosophy',
+    3: 'UCSP',
+    4: 'Contemporary Arts (CPAR)',
+    5: 'Entrepreneurship',
+    6: 'HOPE',
+    7: 'PR'
+  };
+
+  // ma eenable lang ang buttom kapag nag proceed sila sa subject here
+  function checkProceedEnabled() {
+    proceedScoresBtn.disabled = !(subjectSelect.value && yearLevelSelect.value);
+  }
+
+  subjectSelect.addEventListener('change', () => {
+    checkProceedEnabled();
+  });
+  yearLevelSelect.addEventListener('change', () => {
+    checkProceedEnabled();
+  });
+
+  // Start button click
+  startBtn.addEventListener('click', () => {
+    const val = usernameInput.value.trim();
+    if (!val) {
+      alert('Please enter a username.');
+      return;
+    }
+    username = val;
+    loadPreviousComputations();
+    usernameSection.classList.add('hidden');
+    homeSection.classList.remove('hidden');
+    exitBtn.classList.remove('hidden');
+  });
+
+  //  previous computations from Storage
+  function loadPreviousComputations() {
+    const data = localStorage.getItem('gradeComputations_' + username);
+    if (data) {
+      previousComputations = JSON.parse(data);
+    } else {
+      previousComputations = [];
+    }
+  }
+
+  // Save previous computations to Storage
+  function savePreviousComputations() {
+    localStorage.setItem('gradeComputations_' + username, JSON.stringify(previousComputations));
+  }
+
+  // Show previous computations 
+  viewPreviousBtn.addEventListener('click', () => {
+    homeSection.classList.add('hidden');
+    previousSection.classList.remove('hidden');
+    renderPreviousComputations();
+  });
+
+  backHomeBtn.addEventListener('click', () => {
+    previousSection.classList.add('hidden');
+    homeSection.classList.remove('hidden');
+  });
+
+  // previous computation (name,section,subject,grade)
+  function renderPreviousComputations() {
+    if (previousComputations.length === 0) {
+      previousList.innerHTML = '<p>No previous computations found.</p>';
+      return;
+    }
+    previousList.innerHTML = '';
+    previousComputations.forEach((comp, index) => {
+      const div = document.createElement('div');
+      div.style.borderBottom = '1px solid #ccc';
+      div.style.padding = '0.5rem 0';
+      div.innerHTML = `
+        <strong>User:</strong> ${username}<br/>
+        <strong>Subject:</strong> ${comp.subject}<br/>
+        Grade: ${comp.grade.toFixed(2)}<br/>
+        Message: ${comp.message}<br/>
+        <small>Computed on: ${new Date(comp.date).toLocaleString()}</small>
+      `;
+      previousList.appendChild(div);
+    });
+  }
+
+  // Select subject button
+  selectSubjectBtn.addEventListener('click', () => {
+    homeSection.classList.add('hidden');
+    subjectSection.classList.remove('hidden');
+    // Reset selections
+    subjectSelect.value = '';
+    yearLevelSelect.value = '';
+    proceedScoresBtn.disabled = true;
+  });
+
+  backHomeFromSubjectBtn.addEventListener('click', () => {
+    subjectSection.classList.add('hidden');
+    homeSection.classList.remove('hidden');
+  });
+
+  // Proceed to scores button
+  proceedScoresBtn.addEventListener('click', () => {
+    currentSubject = parseInt(subjectSelect.value);
+    currentYearLevel = parseInt(yearLevelSelect.value);
+    subjectName = subjects[currentSubject];
+    setGradingCriteria(currentSubject, currentYearLevel);
+    subjectSection.classList.add('hidden');
+    scoresSection.classList.remove('hidden');
+    // Reset form
+    scoresForm.reset();
+    // CPAR extra scores
+    if (subjectName === 'Contemporary Arts (CPAR)' && currentYearLevel === 1201) {
+      cparExtraScores.classList.remove('hidden');
+      attendScoreInput.required = true;
+      behaviorScoreInput.required = true;
+    } else {
+      cparExtraScores.classList.add('hidden');
+      attendScoreInput.required = false;
+      behaviorScoreInput.required = false;
+    }
+  });
+
+  // Back to subject selection from scores
+  backSubjectBtn.addEventListener('click', () => {
+    scoresSection.classList.add('hidden');
+    subjectSection.classList.remove('hidden');
+  });
+
+  // Set grading criteria based on subject and year level
+  function setGradingCriteria(subjectOption, yearLevel) {
+    gradingCriteria = {};
+    switch(subjectOption) {
+      case 1: // Java
+        if ([1201,1202,1203].includes(yearLevel)) {
+          gradingCriteria = {PT:60, WW:20, QE:20};
+        }
+        break;
+      case 2: // Philosophy
+        if ([1201,1202].includes(yearLevel)) {
+          gradingCriteria = {PT:50, WW:25, QE:25};
+        } else if (yearLevel === 1203) {
+          gradingCriteria = {PT:60, WW:20, QE:20};
+        }
+        break;
+      case 3: // UCSP
+        gradingCriteria = {PT:50, WW:25, QE:25};
+        break;
+      case 4: // CPAR
+        if (yearLevel === 1201) {
+          gradingCriteria = {PT:35, ATTEND:10, BEHAVIOR:5, WW:20, QE:20};
+        } else if (yearLevel === 1202) {
+          gradingCriteria = {PT:50, WW:25, QE:25};
+        } else if (yearLevel === 1203) {
+          gradingCriteria = {PT:60, WW:20, QE:20};
+        }
+        break;
+      case 5: // Entrepreneurship
+        gradingCriteria = {PT:60, WW:20, QE:20};
+        break;
+      case 6: // HOPE
+        gradingCriteria = {PT:50, WW:25, QE:25};
+        break;
+      case 7: // PR
+        gradingCriteria = {PT:60, WW:20, QE:20};
+        break;
+      default:
+        gradingCriteria = {};
+    }
+  }
+
+  // Compute grade  result
+  scoresForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Parse scores
+    const WW_score = parseFloat(wwScoreInput.value);
+    const PT_score = parseFloat(ptScoreInput.value);
+    const QE_score = parseFloat(qeScoreInput.value);
+
+    if (isNaN(WW_score) || isNaN(PT_score) || isNaN(QE_score)) {
+      alert('Please enter valid scores for Written Works, Performance Task, and Quarterly Exam.');
+      return;
+    }
+
+    let ATTEND_score = 0;
+    let BEHAVIOR_score = 0;
+    if (subjectName === 'Contemporary Arts (CPAR)' && currentYearLevel === 1201) {
+      ATTEND_score = parseFloat(attendScoreInput.value);
+      BEHAVIOR_score = parseFloat(behaviorScoreInput.value);
+      if (isNaN(ATTEND_score) || isNaN(BEHAVIOR_score)) {
+        alert('Please enter valid Attendance and Behavior scores.');
+        return;
+      }
+    }
+
+    // Compute grade with max scores normalization
+    let grade = 0;
+    grade += (WW_score / 100) * (gradingCriteria.WW || 0);
+    grade += (PT_score / 100) * (gradingCriteria.PT || 0);
+    grade += (QE_score / 60) * (gradingCriteria.QE || 0);
+    if (subjectName === 'Contemporary Arts (CPAR)' && currentYearLevel === 1201) {
+      grade += (ATTEND_score / 100) * (gradingCriteria.ATTEND || 0);
+      grade += (BEHAVIOR_score / 100) * (gradingCriteria.BEHAVIOR || 0);
+    }
+      //
+    // Determine message
+    let message = '';
+    if (grade >= 90 && grade <= 100) {
+      message = "You passed, Great job! Keep your grades high!!";
+    } else if (grade >= 80 && grade <= 89) {
+      message = "You passed, keep improving, you're almost there!!";
+    } else if (grade >= 76 && grade <= 79) {
+      message = "You passed, need to improve more!!";
+    } else if (grade === 75) {
+      message = "You passed, must improve more!!";
+    } else {
+      message = "You are on the brink of failing, catch up immediately!!!";
+    }
+
+    // Display result
+    gradeResultDiv.innerHTML = `
+      <p><strong>Your Grade for ${subjectName}:</strong> ${grade.toFixed(2)}</p>
+      <p>${message}</p>
+    `;
+
+    // Save computation to previous list
+    previousComputations.push({
+      subject: subjectName,
+      yearLevel: currentYearLevel,
+      grade: grade,
+      message: message,
+      date: new Date().toISOString()
+    });
+
+    // Show result section, hide scores
+    scoresSection.classList.add('hidden');
+    resultSection.classList.remove('hidden');
+  });
+
+  // Compute another subject
+  computeAnotherBtn.addEventListener('click', () => {
+    resultSection.classList.add('hidden');
+    homeSection.classList.remove('hidden');
+  });
+
+  // Save and exit
+  saveExitBtn.addEventListener('click', () => {
+    savePreviousComputations();
+    alert('Your computations have been saved. System Ended.');
+    location.reload();
+  });
+
+  // Exit button on home page
+  exitBtn.addEventListener('click', () => {
+    savePreviousComputations();
+    alert('Your computations have been saved. System Ended.');
+    location.reload();
+  });
+</script>
+
+</body>
+</html>
